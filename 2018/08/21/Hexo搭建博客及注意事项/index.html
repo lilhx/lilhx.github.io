@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="一步一步往上爬">
 <meta property="og:description" content="所有的配置文件的编辑都在sublime中完成，切勿在terminal下使用vim进行修改编辑，否则会出现各种问题。 切换主题后，使用hexo clean清空，在同一主题下的各种修改都不要使用hexo clean，否则可能出现未知的错误。   安装Hexo12$ npm install hexo -g$ hexo -v //查看hexo版本 初始化本地博客目录1234$ mkdir ~/hexo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-21T14:28:05.902Z">
+<meta property="og:updated_time" content="2018-08-21T14:34:14.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo搭建博客及注意事项">
 <meta name="twitter:description" content="所有的配置文件的编辑都在sublime中完成，切勿在terminal下使用vim进行修改编辑，否则会出现各种问题。 切换主题后，使用hexo clean清空，在同一主题下的各种修改都不要使用hexo clean，否则可能出现未知的错误。   安装Hexo12$ npm install hexo -g$ hexo -v //查看hexo版本 初始化本地博客目录1234$ mkdir ~/hexo">
@@ -359,7 +359,11 @@
 <h3 id="使用NexT主题"><a href="#使用NexT主题" class="headerlink" title="使用NexT主题"></a>使用NexT主题</h3><blockquote>
 <p>具体使用可参照<em><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">官方手册</a></em></p>
 </blockquote>
-
+<h3 id="mac下使用hexo-new-post-quot-filename-quot-时自动打开MacDown编辑器"><a href="#mac下使用hexo-new-post-quot-filename-quot-时自动打开MacDown编辑器" class="headerlink" title="mac下使用hexo new post &quot;filename&quot;时自动打开MacDown编辑器"></a>mac下使用<code>hexo new post &quot;filename&quot;</code>时自动打开MacDown编辑器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd blog &amp;&amp; mkdir scripts &amp;&amp; touch macdown.js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>macdown.js的内容如下</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">hexo.on(<span class="string">'new'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123; </span><br><span class="line">	exec(<span class="string">'open -a "/Applications/MacDown.app" '</span> + data.path); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -535,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化本地博客目录"><span class="nav-number">2.</span> <span class="nav-text">初始化本地博客目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成静态文件和本地部署"><span class="nav-number">3.</span> <span class="nav-text">生成静态文件和本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将静态文件推送到github上-需要在-config-yml文件中配置仓库位置及分支"><span class="nav-number">4.</span> <span class="nav-text">将静态文件推送到github上,需要在_config.yml文件中配置仓库位置及分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#github上创建仓库"><span class="nav-number">5.</span> <span class="nav-text">github上创建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置blog目录下-config-yml文件"><span class="nav-number">6.</span> <span class="nav-text">配置blog目录下_config.yml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用NexT主题"><span class="nav-number">7.</span> <span class="nav-text">使用NexT主题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">1.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化本地博客目录"><span class="nav-number">2.</span> <span class="nav-text">初始化本地博客目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成静态文件和本地部署"><span class="nav-number">3.</span> <span class="nav-text">生成静态文件和本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将静态文件推送到github上-需要在-config-yml文件中配置仓库位置及分支"><span class="nav-number">4.</span> <span class="nav-text">将静态文件推送到github上,需要在_config.yml文件中配置仓库位置及分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#github上创建仓库"><span class="nav-number">5.</span> <span class="nav-text">github上创建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置blog目录下-config-yml文件"><span class="nav-number">6.</span> <span class="nav-text">配置blog目录下_config.yml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用NexT主题"><span class="nav-number">7.</span> <span class="nav-text">使用NexT主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mac下使用hexo-new-post-quot-filename-quot-时自动打开MacDown编辑器"><span class="nav-number">8.</span> <span class="nav-text">mac下使用hexo new post &quot;filename&quot;时自动打开MacDown编辑器</span></a></li></ol></div>
             
 
           </div>

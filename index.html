@@ -359,7 +359,11 @@
 <h3 id="使用NexT主题"><a href="#使用NexT主题" class="headerlink" title="使用NexT主题"></a>使用NexT主题</h3><blockquote>
 <p>具体使用可参照<em><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">官方手册</a></em></p>
 </blockquote>
-
+<h3 id="mac下使用hexo-new-post-quot-filename-quot-时自动打开MacDown编辑器"><a href="#mac下使用hexo-new-post-quot-filename-quot-时自动打开MacDown编辑器" class="headerlink" title="mac下使用hexo new post &quot;filename&quot;时自动打开MacDown编辑器"></a>mac下使用<code>hexo new post &quot;filename&quot;</code>时自动打开MacDown编辑器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd blog &amp;&amp; mkdir scripts &amp;&amp; touch macdown.js</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>macdown.js的内容如下</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">hexo.on(<span class="string">'new'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123; </span><br><span class="line">	exec(<span class="string">'open -a "/Applications/MacDown.app" '</span> + data.path); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
           
         
       

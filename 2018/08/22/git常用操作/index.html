@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简单记录一些经常使用的git操作，方便以后查询123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git常用操作">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/git常用操作/index.html">
+<meta property="og:site_name" content="蜗牛">
+<meta property="og:description" content="简单记录一些经常使用的git操作，方便以后查询123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-22T02:25:48.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git常用操作">
+<meta name="twitter:description" content="简单记录一些经常使用的git操作，方便以后查询123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/git常用操作/"/>
+
+
+
+
+
+  <title>git常用操作 | 蜗牛</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">蜗牛</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一步一步往上爬</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/git常用操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="牧人之上">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蜗牛">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git常用操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-22T10:24:31+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="简单记录一些经常使用的git操作，方便以后查询"><a href="#简单记录一些经常使用的git操作，方便以后查询" class="headerlink" title="简单记录一些经常使用的git操作，方便以后查询"></a>简单记录一些经常使用的git操作，方便以后查询</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"># 本地初始化git项目，a.本地创建；b.git clone</span><br><span class="line">mkdir git-demo &amp;&amp; cd git-demo &amp;&amp; git init &amp;&amp; touch README.md &amp;&amp; git add *.md &amp;&amp; git commit -m &apos;init commit&apos;</span><br><span class="line"># 关联远程仓库地址</span><br><span class="line">git remote add origin https://gitee.com/lilhx/git-demo.git</span><br><span class="line"># git clone</span><br><span class="line">mkdir git-demo &amp;&amp; git clone https://gitee.com/lilhx/git-demo.git git-demo</span><br><span class="line"># 或者</span><br><span class="line">git clone https://gitee.com/lilhx/git-demo.git</span><br><span class="line"></span><br><span class="line"># 查看当前分支关联的远程分支</span><br><span class="line">git branch -vv</span><br><span class="line"></span><br><span class="line"># 创建本地分支local/dev1,且设置关联远程分支origin/dev1和origin/dev11</span><br><span class="line">git checkout -b local/dev1 # 此时local/dev1未和远程分支关联</span><br><span class="line">git push -u origin local/dev1:dev1</span><br><span class="line">git push -u origin local/dev1:dev11</span><br><span class="line"># 当本地分支和远程分支名称一样时</span><br><span class="line">git push -u origin dev:dev #可简写为git push -u origin dev</span><br><span class="line"></span><br><span class="line"># 创建本地分支</span><br><span class="line">git branch dev2</span><br><span class="line"></span><br><span class="line"># 创建远程分支</span><br><span class="line">git push origin local/dev1:dev11</span><br><span class="line"></span><br><span class="line"># 删除本地分支</span><br><span class="line">git branch dev2</span><br><span class="line">git branch -d dev2</span><br><span class="line"></span><br><span class="line"># 删除远程分支</span><br><span class="line">git push origin  :dev11</span><br><span class="line"># 或者</span><br><span class="line">git branch -r -d origin/dev11</span><br><span class="line"># 或者</span><br><span class="line">git push -d origin dev11</span><br><span class="line"></span><br><span class="line"># 文件test.txt已经提交到远程服务器，但需要从远程服务器删除，本地文件还保留，只是不提交到版本控制中(不受版本控制)</span><br><span class="line">git rm --cached test.txt &amp;&amp; git commit -m &apos;delete test.txt from resp&apos; &amp;&amp; git push origin master</span><br><span class="line"></span><br><span class="line"># 最新一次commit是修改test.txt文件内容，但提交后发现少改了些内容，此时可以在不增加commit的情况下，把内容加上去</span><br><span class="line">echo &quot;t1&quot; &gt;&gt; test.txt &amp;&amp; git add test.txt &amp;&amp; git commit --amend</span><br><span class="line"></span><br><span class="line"># 或者</span><br><span class="line">git reset --soft pre_commit_id &amp;&amp; echo &quot;t1&quot; &gt;&gt; test.txt &amp;&amp; git commit -m &apos;add test.txt&apos;</span><br><span class="line"></span><br><span class="line"># 添加远程仓库，并在本地创建分支与之关联</span><br><span class="line">git remote add git-demo2 https://gitee.com/lilhx/git-demo2.git &amp;&amp; git fetch git-demo2</span><br><span class="line">git checkout -b demo2/master git-demo2/master</span><br><span class="line"></span><br><span class="line"># 删除远程仓库,先把关联的分支清理</span><br><span class="line">git remote remove git-demo2</span><br><span class="line"></span><br><span class="line"># 已经创建的分支demo2/master关联远程分支git-demo2/master，注意先要将远程分支fetch到本地，git fetch git-demo2</span><br><span class="line">git branch demo2/master &amp;&amp; git checkout demo2/master &amp;&amp; git fetch git-demo2</span><br><span class="line">git branch --set-upstream-to git-demo2/master</span><br><span class="line"># 或者</span><br><span class="line">git branch -u git-demo2/master</span><br><span class="line"></span><br><span class="line"># 取消本地分支demo2/master与远程分支git-demo2/master的关联</span><br><span class="line">git branch --unset-upstream demo2/master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 回滚单个文件</span><br><span class="line">git log file</span><br><span class="line">git reset commit_id file</span><br><span class="line">git checkout -- file</span><br><span class="line">git commit -a -m &apos;rollback file&apos;</span><br><span class="line"></span><br><span class="line"># 回退到某个历史版本</span><br><span class="line">git log</span><br><span class="line">git reset --hard commit_id</span><br><span class="line"></span><br><span class="line"># 根据.git目录还原源代码</span><br><span class="line">git reset --hard HEAD</span><br><span class="line"></span><br><span class="line"># 切换分支</span><br><span class="line">git checkout branch_name</span><br><span class="line"></span><br><span class="line"># 跟踪某个远程分支</span><br><span class="line">git checkout --track origin/master</span><br><span class="line">or</span><br><span class="line">git checkout -b branch_name origin/master</span><br><span class="line"></span><br><span class="line"># 当修改了历史commit_id,导致无法提交或或merge时，强制更新到最新版本</span><br><span class="line">git fetch</span><br><span class="line">git reset origin/master</span><br><span class="line"></span><br><span class="line"># 修改最近一次的author信息</span><br><span class="line">git commit --amend --author=&apos;lilh &lt;lilianghong677@gmail.com&gt;&apos;</span><br><span class="line"></span><br><span class="line"># 当push失败时，强制push(慎用)</span><br><span class="line">git push -f -u origin master</span><br><span class="line"></span><br><span class="line"># 配置提交人信息:author</span><br><span class="line"># 1.全局(mac:~/.gitconfig,windows:~/.gitconfig)</span><br><span class="line">git config --global user.name &apos;lilh&apos;</span><br><span class="line">git config --global user.email &apos;lilianghong677@gmail.com&apos;</span><br><span class="line"># 2.局部(项目目录/.git/config),在项目目录下操作</span><br><span class="line">git config --local user.name &apos;lilh&apos;</span><br><span class="line">git config --local user.email &apos;lilianghong677@gmail.com&apos;</span><br><span class="line"></span><br><span class="line"># 关联本地分支到远程分支,将local/dev 关联到到远程分支origin/feature/dev上</span><br><span class="line">git branch local/dev</span><br><span class="line">git branch -u origin/feature/dev local/dev</span><br><span class="line"></span><br><span class="line"># 取消关联</span><br><span class="line">git branch --unset-upstream local/dev</span><br><span class="line"></span><br><span class="line"># 回退已经提交到远程仓库的某个历史版本</span><br><span class="line">git log #查看要回退到哪个版本</span><br><span class="line">git reset --hard commit_id</span><br><span class="line">git push -f -u origin dev2</span><br><span class="line">#若有人已经pull下来了，则可以(此时本地的修改全部丢失)</span><br><span class="line">git fetch origin dev2</span><br><span class="line">git reset --hard origin/dev2</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/22/nvm安装nodejs/" rel="next" title="nvm安装nodejs">
+                <i class="fa fa-chevron-left"></i> nvm安装nodejs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/24/servlet中的几个常用的扩展点（1）/" rel="prev" title="servlet中的几个常用扩展点（1）">
+                servlet中的几个常用扩展点（1） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="牧人之上" />
+            
+              <p class="site-author-name" itemprop="name">牧人之上</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单记录一些经常使用的git操作，方便以后查询"><span class="nav-number">1.</span> <span class="nav-text">简单记录一些经常使用的git操作，方便以后查询</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">牧人之上</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
